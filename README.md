@@ -14,7 +14,7 @@ Hope it could help you!
 ## To-Do List
 
 - [x] Day 1 Drumb kit
-- [ ] Day 2
+- [x] Day 2
 - [ ] Day 3
 - [ ] Day 4
 - [ ] Day 5
