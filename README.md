@@ -8,14 +8,14 @@ Highly recommended for starters!\
 
 ## Take Aways
 
-Here are my take aways for this challenge sets [Take Away]()\
+Here are my take aways for this challenge sets [Take Away]()
 Hope it could help you!
 
 ## To-Do List
 
 - [x] Day 1 Drumb kit
 - [x] Day 2
-- [ ] Day 3
+- [x] Day 3
 - [ ] Day 4
 - [ ] Day 5
 - [ ] Day 6
