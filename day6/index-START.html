@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Type Ahead 👀</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form class="search-form">
+      <input type="text" class="search" placeholder="City or State" />
+      <ul class="suggestions">
+        <li>Filter for a city</li>
+        <li>or a state</li>
+      </ul>
+    </form>
+    <script>
+      const endpoint =
+        'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+      const searchInput = document.querySelector('.search');
+      const suggestions = document.querySelector('.suggestions');
+      let cities = [];
+      fetch(endpoint)
+        .then((blob) => {
+          return blob.json();
+        })
+        .then((data) => (cities = data));
+
+      function findMatches(wordToMatch, cities) {
+        return cities.filter((place) => {
+          const regex = new RegExp(wordToMatch, 'gi');
+          return place.city.match(regex) || place.state.match(regex);
+        });
+      }
+
+      function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      }
+
+      function displayMatches() {
+        console.log(this.value);
+        const matchArr = findMatches(this.value, cities);
+
+        const html = matchArr
+          .map((place) => {
+            const regex = new RegExp(this.value, 'gi');
+            const cityName = place.city.replace(
+              regex,
+              `<span class='hl'>${this.value}</span>`,
+            );
+            const stateName = place.state.replace(
+              regex,
+              `<span class='hl'>${this.value}</span>`,
+            );
+            return `
+            <li>
+           <span class='name'>${cityName}, ${stateName}</span>
+           <span class='population'>${numberWithCommas(place.population)}</span>
+           </li>
+          `;
+          })
+          .join('');
+        suggestions.innerHTML = html;
+      }
+
+      function debounce(func, time, immediate) {
+        //设置定时器
+        var timeout;
+        return function() {
+          //保存this指针和参数列表
+          var context = this;
+          var args = arguments;
+          console.log('I have been debounced');
+          //设置延迟函数
+          var later = function() {
+            //重置定时器
+            timeout = null;
+            if (!immediate) {
+              func.apply(context, args);
+            }
+          };
+          //是否立即执行，还是等抖动完毕再执行
+          var callNow = immediate && !timeout;
+          //清除定时器
+          clearTimeout(timeout);
+          timeout = setTimeout(later, time);
+          if (callNow) {
+            func.apply(context, args);
+          }
+        };
+      }
+      searchInput.addEventListener(
+        'input',
+        debounce(displayMatches, 100, true),
+      );
+    </script>
+  </body>
+</html>

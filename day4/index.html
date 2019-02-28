@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>DayFour Bonus</title>
+    <style>
+      body {
+        background: #cc4b17;
+        font-size: 14px;
+      }
+      #demo {
+        width: 300px;
+        margin: 30px auto;
+        padding: 20px 30px;
+        position: relative;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+      #demo .tooltip {
+        color: #03f;
+        cursor: help;
+      }
+
+      .tooltip-box {
+        display: block;
+        background: #fff;
+        line-height: 1.6;
+        border: 1px solid #66ccff;
+        color: #333;
+        padding: 20px;
+        font-size: 12px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="demo">
+      <h2>Tooltip</h2>
+      <p>This is a tooltip<a id="tooltip1">this is a tool tip</a></p>
+    </div>
+  </body>
+  <script>
+    function showToolTip(obj, id, html, width, height) {
+      if (document.getElementById(id) === null) {
+        //create a tooltip
+        var tooltip = document.createElement('div');
+        tooltip.className = 'tooltip-box';
+        tooltip.id = id;
+        tooltip.innerHTML = html;
+        tooltip.style.width = width ? width + 'px' : 'auto';
+        tooltip.style.height = height ? height + 'px' : 'auto';
+        tooltip.style.display = 'block';
+        tooltip.style.position = 'absolute';
+        var left = obj.offsetLeft;
+        var top = obj.offsetTop;
+        tooltip.style.left = left + 'px';
+        tooltip.style.top = top + obj.height + 'px';
+        obj.appendChild(tooltip);
+
+        obj.onmouseleave = function() {
+          document.getElementById(id).style.display = 'none';
+        };
+      } else {
+        document.getElementById(id).style.display = 'block';
+      }
+    }
+
+    var test = document.getElementById('tooltip1');
+    test.onmouseenter = function() {
+      showToolTip(this, 't1', 'Great tooltip', 200);
+    };
+  </script>
+</html>
