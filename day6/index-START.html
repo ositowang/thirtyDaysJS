@@ -88,6 +88,44 @@
           }
         };
       }
+
+      function throttle(func, wait, options) {
+        var context, args, result, timeout;
+        var previous = 0;
+        if (!options) options = {};
+        //延迟执行的回调函数
+        var later = function() {
+          previous = options.leading === false ? 0 : Date.now();
+          timeout = null;
+          result = func.apply(context, args);
+          if (!timeout) {
+            context = args = null;
+          }
+        };
+        var throttled = function() {
+          var now = Date.now();
+          if (!previous && options.leading === false) {
+            previous = now;
+          }
+          context = this;
+          args = arguments;
+          var remaining = wait - (now - previous);
+          if (remaing <= 0 || remaining > wait) {
+            if (timeout) {
+              clearTimeout(timeout);
+              timeout = null;
+            }
+            previous = now;
+            result = func.apply(context, args);
+            if (!timeout) {
+              context = args = null;
+            } else if (!timeout && options.trailing !== false) {
+              timeout = setTimeout(later, remaining);
+            }
+            return result;
+          }
+        };
+      }
       searchInput.addEventListener(
         'input',
         debounce(displayMatches, 100, true),
