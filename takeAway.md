@@ -43,3 +43,7 @@ function numberWithCommas(x) {
 1. canvas basic api like `canvas.getContext()` `lineTo(), moveTo(),stroke()`. here is the reference[canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API).
 
 2. `hsl` to control the color.[color](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value)
+
+## Day9 && Day10
+
+1. Only small tricks learned
