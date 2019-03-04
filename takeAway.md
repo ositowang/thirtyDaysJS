@@ -47,3 +47,7 @@ function numberWithCommas(x) {
 ## Day9 && Day10
 
 1. Only small tricks learned
+
+## Day11
+
+1.  Bunch of video APIs learned such as `timeupdate` etc.
