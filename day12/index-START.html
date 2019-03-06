@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Key Detection</title>
+    <script
+      type="text/javascript"
+      src="http://www.cornify.com/js/cornify.js"
+    ></script>
+  </head>
+  <body>
+    <script>
+      let pressed = [];
+      let secret = 'pangzi';
+      //监听keyup时间，记录key
+      window.addEventListener('keyup', (e) => {
+        pressed.push(e.key);
+        console.log(pressed);
+        pressed.splice(-secret.length - 1, pressed.length - secret.length);
+        if (pressed.join('').includes(secret)) {
+          cornify_add();
+        }
+      });
+    </script>
+  </body>
+</html>
