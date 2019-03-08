@@ -28,3 +28,5 @@ Hope it could help you!
 - [x] Day 13
 - [x] Day 14
 - [x] Day 15
+- [x] Day 16
+- [x] Day 17

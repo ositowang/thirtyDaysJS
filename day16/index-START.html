@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mouse Shadow</title>
+  </head>
+  <body>
+    <div class="hero">
+      <h1 contenteditable>🔥WOAH!</h1>
+    </div>
+
+    <style>
+      html {
+        color: black;
+        font-family: sans-serif;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+      }
+
+      h1 {
+        text-shadow: 10px 10px 0 rgba(0, 0, 0, 1);
+        font-size: 100px;
+      }
+    </style>
+
+    <script>
+      /**
+       * 整理一下思路
+       * 1. 首先我们要获取Mouse的坐标，订阅mousemove事件
+       * 2. 根据mouse的坐标，动态的调整textShadow的偏移值
+       */
+
+      //获取dom元素,设置偏移基准值
+      const hero = document.querySelector('.hero');
+      const text = document.querySelector('.hero h1');
+      const walk = 100;
+
+      function handleMove(e) {
+        const { offsetWidth: width, offsetHeight: height } = hero;
+        let { offsetX: x, offsetY: y } = e;
+        //this 指向 绑定时间的元素，e.target是当前触发事件的元素。由于绑定的是、、/////Mousemove事件，绑定事件的元素的子元素也有可能触发事件。
+
+        if (this !== e.target) {
+          //如果在子元素上触发了事件，则需要修正x,y坐标
+          x = x + e.target.offsetLeft;
+          y = y + e.target.offsetTop;
+        }
+        console.log(width, height);
+        let xWalk = Math.round((x / width) * walk - walk / 2);
+        let yWalk = Math.round((y / height) * walk - walk / 2);
+        // console.log(xWalk, yWalk);
+        text.style.textShadow = `
+        ${xWalk}px ${yWalk}px 0 rgba(0,255,255,0.7),
+        ${xWalk * -1}px ${yWalk}px 0 rgba(255,0,255,0.7),
+        ${xWalk}px ${yWalk * -1}px 0 rgba(255,0,0,0.7)
+        `;
+      }
+      hero.addEventListener('mousemove', handleMove);
+    </script>
+  </body>
+</html>

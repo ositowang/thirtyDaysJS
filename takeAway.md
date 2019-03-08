@@ -50,8 +50,12 @@ function numberWithCommas(x) {
 
 ## Day11
 
-1.  Bunch of video APIs learned such as `timeupdate` etc.
+1. Bunch of video APIs learned such as `timeupdate` etc.
 
 ## Day13-15
 
 1. you never learn until you do it by yourself.
+
+## Day16-17
+
+1. `mousemove` can be triggerred on the child element, so we need to be careful about the real coordination reference.
