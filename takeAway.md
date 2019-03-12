@@ -59,3 +59,7 @@ function numberWithCommas(x) {
 ## Day16-17
 
 1. `mousemove` can be triggerred on the child element, so we need to be careful about the real coordination reference.
+
+## Day18-19
+
+1. no news. Bunch of Video API learned.
