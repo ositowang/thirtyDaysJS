@@ -32,3 +32,6 @@ Hope it could help you!
 - [x] Day 17
 - [x] Day 18
 - [x] Day 19
+- [x] Day 20
+- [x] Day 21
+- [x] Day 22

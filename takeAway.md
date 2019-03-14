@@ -63,3 +63,7 @@ function numberWithCommas(x) {
 ## Day18-19
 
 1. no news. Bunch of Video API learned.
+
+## Day22
+
+1. `getBoundingClientRect()` returns all the position and width&height information of the dom element.
